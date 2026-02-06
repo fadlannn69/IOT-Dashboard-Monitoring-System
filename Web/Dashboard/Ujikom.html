@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ujikom_UI</title>
+    <link rel="stylesheet" href="Ujikom.css" />
+</head>
+<body>
+    <!-- Container Utama -->
+    <div class="container"></div>
+
+    <!-- Header Judul -->
+    <div class="header">
+        <h1>IOT Control Ujikom</h1>
+        <p>Smart Control System</p>
+    </div>
+
+    <!-- Grid Utama Dashboard -->
+    <div class="dashboard-grid">
+
+        <!-- Card 1 Kontrol Lampu -->
+        <div class="card-lampu">
+            <div class="judul-card-lampu">Kontrol Lampu</div>
+            <!-- Toggle Lampu -->
+            <div class="Lampu-item">
+                <!-- Lampu Merah -->
+                <label class="Lampu-Merah">
+                    <img src="/Web/Asset/LedMerah.png" class="Gambar-Lampu-Merah">
+                    <div class="toggle-Merah">
+                        <input id="Lampu_Merah" class="toggle-state" type="checkbox" name="check" value="check">
+                        <div class="indicator-Merah"></div>
+                    </div>
+                </label>
+                <br>
+                <!-- Lampu Hijau -->
+                <label class="Lampu-Hijau">
+                    <img src="/Web/Asset/LedHijau.png" class="Gambar-Lampu-Hijau">
+                    <div class="toggle-Hijau">
+                        <input id="Lampu_Hijau" class="toggle-state" type="checkbox" name="check" value="check">
+                        <div class="indicator-Hijau"></div>
+                    </div>
+                </label>
+                <br>
+                <!-- Lampu Biru -->
+                <label class="Lampu-Biru">
+                    <img src="/Web/Asset/LedBiru.png" class="Gambar-Lampu-Biru">
+                    <div class="toggle-Biru">
+                        <input id="Lampu_Biru" class="toggle-state" type="checkbox" name="check" value="check">
+                        <div class="indicator-Biru"></div>
+                    </div>
+                </label>
+            </div>
+        </div>
+
+    <!-- card 2 Kontrol Servo -->
+    <div class="card-servo">
+        <div class="judul-card-servo">Kontrol Servo</div>
+
+        <div class="servo-angle" id="servoAngle">0°</div>
+
+        <div class="servo-visual">
+            <div class="servo-pivot"></div>
+            <div class="servo-arm" id="servoArm"></div>
+        </div>
+
+        <div class="servo-buttons" id="servoButtons">
+            <button id="p0" data-preset="p0">0°</button>
+            <button id="p1" data-preset="p1">45°</button>
+            <button id="p2" data-preset="p2">90°</button>
+            <button id="p3" data-preset="p3">135°</button>
+            <button id="p4" data-preset="p4">180°</button>
+        </div>
+    </div> 
+
+
+
+        <!-- Log Aktivitas -->
+        <div class="card-aktivitas">
+            <div class="judul-card-aktivitas">Log Aktivitas</div>
+            <div class="log-box" id="LogBox"></div>
+        </div>
+        
+            <!-- Sensor Ultrasonic -->
+            <div class="card-sensor-jarak">
+                <img src="/Web/Asset/ultrasonic.png" class="logo-sensor-jarak">
+                <div class="sensor-jarak">Sensor Ultrasonic</div>
+                <div class="nilai-sensor-jarak" id="nilai-sensor-jarak"></div>
+            </div>
+            
+            <!-- Sensor DHT -->
+            <div class="card-sensor-dht">
+                <img src="/Web/Asset/dht.png" class="logo-sensor-dht">
+                <div class="sensor-dht">Sensor DHT</div>
+                <div class="nilai-sensor-dht" id="nilai-sensor-dht"></div>
+                
+            </div>
+            <!-- Sensor Api -->
+            <div class="card-sensor-api">
+                <img src="/Web/Asset/flame.png" class="logo-sensor-api">
+                <div class="sensor-api">Sensor Api</div>
+                <div class="fire-safe" id="fire-safe"></div>
+            </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.js" integrity="sha512-+k1pnlgt4F1H8L7t3z95o3/KO+o78INEcXTbnoJQ/F2VqDVhWoaiVml/OEHv9HsVgxUaVW+IbiZPUJQfF/YxZw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script type="module" src="Ujikom.js"></script>
+</body>
+</html>
