@@ -5,7 +5,7 @@
 #include <addons/RTDBHelper.h>
 #include "secrets.h"
 
-
+// FIREBASE
 FirebaseData fbdo;
 FirebaseAuth auth;    
 FirebaseConfig config;
@@ -27,12 +27,23 @@ void setup() {
   // ===== FIREBASE =====
   config.api_key = " ";          
   config.database_url = "https://ujikom-fadlann-default-rtdb.asia-southeast1.firebasedatabase.app";
-
   Firebase.begin(&config, &auth);    
   Firebase.reconnectNetwork(true);
-
   Serial.println("Firebase connected");
+
+  // ====== LAMPU =======
+
+
+
+
+  // ====== SERVO =======
+
+
+  // ====== DHT =========
+
+  // ====== API =========
 }
 void loop() {
+
 
 }
