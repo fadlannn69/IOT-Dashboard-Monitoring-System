@@ -47,7 +47,7 @@ btn.addEventListener("click", async () => {
       return;
     }
 
-    window.location.replace("/Web/Dashboard/Ujikom.html");
+    window.location.replace("../Web/Dashboard/Ujikom.html");
 
   } catch (err) {
     console.error(err);
