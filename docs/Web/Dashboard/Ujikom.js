@@ -1,4 +1,4 @@
-import { db } from "../Config/Firebase.js";
+import { db } from "./Config/Firebase.js";
 import { ref, set, onValue } from "https://www.gstatic.com/firebasejs/12.8.0/firebase-database.js";
 console.log("Firebase Terkoneksi");
 
