@@ -1,4 +1,4 @@
-import { auth, db, ADMIN_UID } from "../Config/Fire_Auth.js";
+import { auth, db, ADMIN_UID } from "../Web/Config/Fire_Auth.js";
 import { signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/12.8.0/firebase-auth.js";
 import { doc, getDoc } from "https://www.gstatic.com/firebasejs/12.8.0/firebase-firestore.js";
 
