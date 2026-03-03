@@ -160,7 +160,7 @@ function DHT() {
   // SUHU
   onValue(ref(db, "sensor/suhu"), snapshot => {
     const val = snapshot.val();
-    el.textContent = `Suhu : ${val} %`;
+    el.textContent = `Suhu : ${val} °`;
   })
 
   if (!elm) return;
