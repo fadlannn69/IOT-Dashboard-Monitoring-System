@@ -434,6 +434,15 @@ body {
     border-radius: 20px;
 }
 
+.nilai-lembab-dht {
+    font-size: 25px;
+    font-style: oblique;
+    font-family:sans-serif;
+    color: black;
+    background-color: #667eea;
+    border-radius: 20px;
+}
+
 /* FIRESAFE */
 .fire-safe {
     background: #d3f9d8;
@@ -452,5 +461,6 @@ body {
     .dashboard-grid {
         grid-template-columns: 1fr;
     }
+
 
 }
