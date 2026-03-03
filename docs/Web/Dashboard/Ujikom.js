@@ -155,19 +155,21 @@ ULTRASONIC();
 // SENSOR DHT11
 function DHT() {
   const el = document.getElementById("nilai-sensor-dht");
+  const elm = document.getElementById("nilai-lembab-dht");
   if (!el) return;
   // SUHU
   onValue(ref(db, "sensor/suhu"), snapshot => {
     const val = snapshot.val();
     el.textContent = `Suhu : ${val} %`;
-  });
+  })
+
+  if (!elm) return;
   // KELEMBABAN
   onValue(ref(db, "sensor/kelembaban"), snapshot => {
     const val = snapshot.val();
-    el.textContent = `Kelembaban : ${val} %`;
+    elm.textContent = `Kelembaban : ${val} %`;
   });
 }
-
 DHT();
 
 // SENSOR API
