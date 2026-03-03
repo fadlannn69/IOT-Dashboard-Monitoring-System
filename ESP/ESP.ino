@@ -169,4 +169,34 @@ void loop() {
     Firebase.RTDB.setBool(&fbdo, "/sensor/api", false);
   }
 
+
+  // ===== DHT11 =====
+  float humidity = dht.readHumidity();
+  float temperature = dht.readTemperature();
+
+  if (isnan(humidity) || isnan(temperature)) {
+    Serial.println("Gagal membaca DHT11!");
+  } else {
+    Serial.print("Suhu: ");
+    Serial.print(temperature);
+    Serial.print(" °C | Kelembaban: ");
+    Serial.print(humidity);
+    Serial.println(" %");
+
+    // Kirim ke Firebase
+    if (Firebase.RTDB.setFloat(&fbdo, "/sensor/suhu", temperature)) {
+      Serial.println("Suhu terkirim");
+    } else {
+      Serial.println("Gagal kirim suhu");
+      Serial.println(fbdo.errorReason());
+    }
+
+    if (Firebase.RTDB.setFloat(&fbdo, "/sensor/kelembaban", humidity)) {
+      Serial.println("Kelembaban terkirim");
+    } else {
+      Serial.println("Gagal kirim kelembaban");
+      Serial.println(fbdo.errorReason());
+    }
+}
+
 }

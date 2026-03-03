@@ -156,10 +156,15 @@ ULTRASONIC();
 function DHT() {
   const el = document.getElementById("nilai-sensor-dht");
   if (!el) return;
-
+  // SUHU
   onValue(ref(db, "sensor/suhu"), snapshot => {
     const val = snapshot.val();
-    el.textContent = `Kelembapan : ${val} %`;
+    el.textContent = `Suhu : ${val} %`;
+  });
+  // KELEMBABAN
+  onValue(ref(db, "sensor/kelembaban"), snapshot => {
+    const val = snapshot.val();
+    el.textContent = `Kelembaban : ${val} %`;
   });
 }
 
