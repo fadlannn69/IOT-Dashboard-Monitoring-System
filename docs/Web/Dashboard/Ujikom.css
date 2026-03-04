@@ -400,7 +400,7 @@ body {
 .sensor-jarak{
     font-weight: bold;
     font-size: 30px;
-    margin-bottom: 15px;
+    margin-bottom: 50px;
     color: #333;
 }
 .sensor-dht{
@@ -412,7 +412,7 @@ body {
 .sensor-api{
     font-weight: bold;
     font-size: 30px;
-    margin-bottom: 15px;
+    margin-bottom: 50px;
     color: #333;
 }
 
@@ -465,6 +465,7 @@ body {
 
 
 }
+
 
 
 
