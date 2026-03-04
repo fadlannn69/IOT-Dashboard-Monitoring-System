@@ -430,7 +430,7 @@ body {
     font-style: oblique;
     font-family:sans-serif;
     color: black;
-    padding: 10px;
+    margin-bottom: 10px;
     background-color: #667eea;
     border-radius: 20px;
 }
@@ -465,5 +465,6 @@ body {
 
 
 }
+
 
 
