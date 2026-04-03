@@ -1,4 +1,6 @@
-import { auth, db, ADMIN_UID } from "./Web/Config/Fire_Auth.js";
+////////// Login.js //////////
+
+import { auth, ADMIN_UID } from "./Web/Config/Fire_Auth.js";
 import { signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/12.8.0/firebase-auth.js";
 
 const msg = document.getElementById("msg");
@@ -8,38 +10,19 @@ btn.addEventListener("click", async () => {
   msg.textContent = "Checking...";
   btn.disabled = true;
 
-  const username = document.getElementById("username").value.trim();
+  const email = document.getElementById("username").value.trim();
   const password = document.getElementById("password").value;
 
-  if (!username || !password) {
+  if (!email || !password) {
     msg.textContent = "Field kosong";
     btn.disabled = false;
     return;
   }
 
   try {
-    // Ambil data admin
-    const adminRef = doc(db, "admins", "admin");
-    const snap = await getDoc(adminRef);
-
-    if (!snap.exists()) {
-      throw new Error("Admin config missing");
-    }
-
-    const { username: storedUsername, email } = snap.data();
-
-    if (username !== storedUsername) {
-      msg.textContent = "Username salah";
-      btn.disabled = false;
-      return;
-    }
-
-    // Firebase Auth 
     const cred = await signInWithEmailAndPassword(auth, email, password);
-    
-    //UID CHECK 
+
     if (cred.user.uid !== ADMIN_UID) {
-      console.log("REAL UID:", cred.user.uid);
       await auth.signOut();
       msg.textContent = "Akses ditolak";
       btn.disabled = false;
@@ -50,8 +33,7 @@ btn.addEventListener("click", async () => {
 
   } catch (err) {
     console.error(err);
-    msg.textContent = "Password Salah";
+    msg.textContent = "Email / Password salah";
     btn.disabled = false;
   }
 });
-
