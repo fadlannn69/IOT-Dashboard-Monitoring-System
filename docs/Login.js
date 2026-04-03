@@ -1,5 +1,5 @@
 // login.js
-import { auth, ADMIN_UID } from "/Web/Config/Fire_Auth.js";
+import { auth, ADMIN_UID } from "./Web/Config/Fire_Auth.js";
 import { signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/12.8.0/firebase-auth.js";
 
 const btn = document.getElementById("login");
@@ -24,7 +24,7 @@ btn.addEventListener("click", async () => {
     }
 
     msg.textContent = "Login berhasil!";
-    window.location.replace("./Ujikom.html"); // buka dashboard
+    window.location.replace("./Web/Dashboard/Ujikom.html"); // buka dashboard
   } catch (err) {
     console.error(err);
     msg.textContent = "Email / Password salah";
