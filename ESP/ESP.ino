@@ -72,8 +72,8 @@ void setup() {
   auth.user.email = "ujikom@iot.com";
   auth.user.password = "UjikomFadlann123_";
 
-  config.api_key = "YOUR_API_KEY";
-  config.database_url = "YOUR_DB_URL";
+  config.api_key = "AIzaSyASYEAnSMK81XvAJ9rh5CtsPzd3RP0W8V8";
+  config.database_url = "https://ujikom-fadlann-default-rtdb.asia-southeast1.firebasedatabase.app";
 
   Firebase.begin(&config, &auth);
   Firebase.reconnectNetwork(true);
