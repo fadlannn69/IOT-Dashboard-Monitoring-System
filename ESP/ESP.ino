@@ -55,8 +55,8 @@ void setup() {
   Serial.println("\nWiFi connected");
 
   // ===== FIREBASE =====
-  auth.user.email = "admin@gmail.com";
-  auth.user.password = "Pzych0_";
+  auth.user.email = "ujikom@iot.com";
+  auth.user.password = "UjikomFadlann123_";
 
   config.api_key = "AIzaSyASYEAnSMK81XvAJ9rh5CtsPzd3RP0W8V8";          
   config.database_url = "https://ujikom-fadlann-default-rtdb.asia-southeast1.firebasedatabase.app";
