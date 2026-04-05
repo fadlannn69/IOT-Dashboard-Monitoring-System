@@ -4,17 +4,17 @@
 <h3 align="center">Created By : Rivaldi Fadlan XII-K1</h3>
 <hr>
 <hr>
-<center>
+<p align="center">
 <img src="./Pic/IOT.jpeg" alt="Contoh Gambar" style="border-radius: 15px;" width="500" height="650"/>
-</center>
 <br>
 <img src="./Pic/Login.png" alt="Contoh Gambar" style="border-radius: 15px;" width="700" height="400"/>
 <br>
 <img src="./Pic/Dashboard.png" alt="Contoh Gambar" style="border-radius: 15px;" width="700" height="400"/>
 <br>
+</p>
 <hr>
-<h2><Strong> Tech-Stack : </Strong></h2>
-<center><h3>Programming Language</h3></center>
+<h2 align="center"><Strong> Tech-Stack : </Strong></h2>
+<h3>Programming Language</h3>
 <ul>
     <li>C++ (Arduino framework untuk ESP8266)</li>
     <li>Firebase (REALTIME DATABASE)</li>
@@ -23,7 +23,7 @@
     <li>Javascript</li>
 </ul>
 <hr>
-<center><h3>Hardware IOT</h3></center>
+<h3>Hardware IOT</h3>
 <ul>
     <li>ESP8266</li>
     <li>HC-SR04</li>
@@ -33,7 +33,7 @@
     <li>SERVO MOTOR</li>
 </ul>
 <hr>
-<center><h3>HARDWARE PIN MAPPING</h3></center>
+<h3>HARDWARE PIN MAPPING</h3>
 
 | Komponen      | Pin | GPIO  | Fungsi                  |
 |--------------|-----|-------|--------------------------|
@@ -49,13 +49,13 @@
 **Catatan:**
 - Semua komponen menggunakan **GND dan VCC**
 <hr>
-<h2><Strong> Flowchart Schemas : </Strong></h2>
-<center>
+<h2 align="center"><Strong> Flowchart Schemas : </Strong></h2>
+<p align="center">
 <img src="./Pic/Flowchart.jpeg" alt="Contoh Gambar" style="border-radius: 15px;" width="450" height="600"/>
-</center>
+</p>
 
 <hr>
-<h2><Strong> How To Build :</Strong></h2>
+<h2 align="center"><Strong> How To Build :</Strong></h2>
 <ol>
     <li>Persiapkan Hardware Yang Di Butuhkan</li>
     <li>Rakit IOT Hardware Sesuai Dengan Pin Mapping</li>
@@ -69,10 +69,15 @@
     <li>Jalankan Code ESP</li>
 </ol>
 <hr>
-<h2><Strong> How To Access Dashboard :</Strong></h2>
+<h2 align="center"><Strong> How To Access Dashboard :</Strong></h2>
 <ol>
     <li>Akses Browser e.g. librewolf , brave , atau firefox</li>
     <li>Akses Link (https://fadlannn69.github.io/UJIKOM-FADLANN/index.html)</li>
     <li>Masukkan Kredensial Username & Password Di Login Page</li>
     <li>Masuk Ke Dashboard Page</li>
 </ol>
+
+<hr>
+
+## © 2026 Rivaldi Fadlan
+All rights reserved. Unauthorized use, copying, modification, or distribution without permission is strictly prohibited.
