@@ -1,0 +1,538 @@
+/* STYLE BODY UTAMA */
+body {
+    background: linear-gradient(purple, yellow, blue);
+    margin: auto;
+    padding: 40px;
+
+}
+
+/* Container Utama */
+.container {
+    margin: auto;
+}
+
+/* Bagian Header */
+.header {
+    text-align: center;
+    color: rgb(5, 10, 5);
+    margin-bottom: 40px;
+}
+
+.header h1 {
+    font-family: "fantasy";
+    font-size: 42px;
+    margin-bottom: 10px;
+}
+
+.header p {
+    font-family: 'Sans Serif';
+    font-size: 21px;
+    opacity: 0.9;
+}
+
+/* LOGOUT BUTTON */
+.Logout {
+  width: 45px;
+  height: 45px;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  transition-duration: .3s;
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.199);
+  background-color: Black;
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+}
+
+/* plus sign */
+.sign {
+  width: 100%;
+  transition-duration: .3s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.sign svg {
+  width: 17px;
+}
+
+.sign svg path {
+  fill: white;
+}
+
+/* text */
+.text {
+  position: absolute;
+  right: 0%;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 0%;
+  opacity: 0;
+  color: white;
+  font-size: 1.2em;
+  font-weight: 600;
+  transition-duration: .3s;
+}
+/* hover effect on button width */
+.Logout:hover {
+  width: 125px;
+  border-radius: 40px;
+  transition-duration: .3s;
+}
+
+.Logout:hover .sign {
+  width: 30%;
+  transition-duration: .3s;
+  padding-left: 5px;
+}
+/* hover effect button's text */
+.Logout:hover .text {
+  opacity: 1;
+  width: 70%;
+  transition-duration: .3s;
+  padding-right: 5px;
+}
+/* button click effect*/
+.Logout:active {
+  transform: translate(2px ,2px);
+}
+
+/* Grid Layout Card */
+.dashboard-grid {   
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 25px;
+}
+
+/* CARD LAMPU */
+.card-lampu {
+    background: white;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    padding: 25px;
+    width: auto;
+}
+.card-lampu:hover {
+    transform: translate(-5px);
+}
+.judul-card-lampu {
+    font-weight: bold;
+    background-color: #667eea;
+    border-radius: 20px;
+    font-size: 40px;
+    margin-bottom: 20px;
+    color: grey;
+    text-align: center;
+    font-family: 'Courier New';
+}
+
+/* Bentuk Bola Lampu */
+
+
+/* Lampu Merah */
+.Lampu-Merah {
+    display: inline-flex;
+    align-items: center;
+    cursor: pointer;
+    color: Black;
+    font-family: "fantasy";
+    font-weight: bold;
+    font-size: large;
+    font-style: italic;
+}
+
+.toggle-Merah {
+    isolation: isolate;
+    position: relative;
+    height: 30px;
+    margin-left: 70px;
+    width: 60px;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: -8px -4px 8px 0px #ffffff,
+    8px 4px 12px 0px #d1d9e6,
+    4px 4px 4px 0px #d1d9e6 inset,
+    -4px -4px 4px 0px #ffffff inset;
+}
+
+/* GAMBAR */
+.Gambar-Lampu-Merah{
+    margin-left: 70px;
+    width: 50px;
+    height: 70px;
+    margin-bottom: 20px;
+}
+.Gambar-Lampu-Hijau{
+    margin-left: 70px;
+    width: 50px;
+    height: 70px;
+}
+.Gambar-Lampu-Biru{
+    margin-left: 70px;
+    width: 50px;
+    height: 70px;
+}
+
+
+/* Lampu Hijau */
+.Lampu-Hijau {
+    display: inline-flex;
+    align-items: center;
+    cursor: pointer;
+    color: green;
+    font-family: "fantasy";
+    font-weight: bold;
+    font-size: large;
+    font-style: italic;
+}
+
+.toggle-Hijau {
+    isolation: isolate;
+    position: relative;
+    height: 30px;
+    width: 60px;
+    margin-left: 70px;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: -8px -4px 8px 0px #ffffff,
+    8px 4px 12px 0px #d1d9e6,
+    4px 4px 4px 0px #d1d9e6 inset,
+    -4px -4px 4px 0px #ffffff inset;
+}
+
+
+
+/* Lampu Biru */
+.Lampu-Biru {
+    display: inline-flex;
+    align-items: center;
+    cursor: pointer;
+    color: blue;
+    font-family: "fantasy";
+    font-weight: bold;
+    font-size: large;
+    font-style: italic;
+}
+
+.toggle-Biru {
+    isolation: isolate;
+    position: relative;
+    height: 30px;
+    width: 60px;
+    margin-left: 70px;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: -8px -4px 8px 0px #ffffff,
+    8px 4px 12px 0px #d1d9e6,
+    4px 4px 4px 0px #d1d9e6 inset,
+    -4px -4px 4px 0px #ffffff inset;
+}
+
+/* STATE LAMPU */
+.toggle-state {
+    display: none;
+}
+
+.indicator-Merah {
+    height: 100%;
+    width: 200%;
+    background: red;
+    border-radius: 15px;
+    transform: translate3d(-75%, 0, 0);
+    transition: transform 0.4s cubic-bezier(0.85, 0.05, 0.18, 1.35);
+    box-shadow: -8px -4px 8px 0px #ffffff,
+        8px 4px 12px 0px #d1d9e6;
+}
+.indicator-Hijau {
+    height: 100%;
+    width: 200%;
+    background: green;
+    border-radius: 15px;
+    transform: translate3d(-75%, 0, 0);
+    transition: transform 0.4s cubic-bezier(0.85, 0.05, 0.18, 1.35);
+    box-shadow: -8px -4px 8px 0px #ffffff,
+        8px 4px 12px 0px #d1d9e6;
+}
+.indicator-Biru {
+    height: 100%;
+    width: 200%;
+    background: blue;
+    border-radius: 15px;
+    transform: translate3d(-75%, 0, 0);
+    transition: transform 0.4s cubic-bezier(0.85, 0.05, 0.18, 1.35);
+    box-shadow: -8px -4px 8px 0px #ffffff,
+        8px 4px 12px 0px #d1d9e6;
+}
+
+.toggle-state:checked~.indicator-Merah {
+    transform: translate3d(25%, 0, 0);
+}
+.toggle-state:checked~.indicator-Hijau {
+    transform: translate3d(25%, 0, 0);
+}
+.toggle-state:checked~.indicator-Biru {
+    transform: translate3d(25%, 0, 0);
+}
+
+
+
+/* CARD SERVO */
+.card-servo {
+    background: #fff;
+    border-radius: 20px;
+    padding: 20px;
+    text-align: center;
+}
+.servo-buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 15px;
+}
+
+.judul-card-servo{
+    font-weight: bold;
+    background-color: #667eea;
+    border-radius: 20px;
+    font-size: 40px;
+    margin-bottom: 20px;
+    color: #333;
+    text-align: center;
+    font-family: 'Courier New';
+}
+
+.servo-buttons button {
+    flex: 1;
+    margin: 5px;
+    padding: 10px;
+    border-radius: 10px;
+    border: none;
+    background: #4a6cf7;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+}
+.servo-buttons{
+    margin-top: 50px;
+}
+
+.servo-buttons button:hover {
+    background: #3654d6;
+}
+
+.servo-visual {
+    width: 200px;
+    height: 120px;
+    border-radius: 16   px;
+    margin: 0 auto;
+    position: relative;
+}
+.servo-pivot {
+    width: 12px;
+    height: 12px;
+    background: #333;
+    border-radius: 50%;
+
+    position: absolute;
+    bottom: 11px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 2;
+}
+.servo-arm {
+    width: 85px;
+    height: 6px;
+    background: red;
+    position: absolute;
+    bottom: 15px;
+    left: 50%;
+
+    transform-origin: left center;
+    transform: translateX(0) rotate(-180deg);
+
+    transition: transform 0.4s ease;
+    z-index: 1;
+    border-radius: 4px;
+}
+
+.servo-angle {
+    font-size: 28px;
+    font-weight: bold;
+    color: #4a6cf7;
+    margin-top: 5px;
+}
+
+.card-servo:hover {
+    transform: translate(-5px);
+}
+
+
+
+/* CARD AKTIVITAS */
+.card-aktivitas {
+    background: white;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    padding: 25px;
+    width: auto;
+}
+.card-aktivitas:hover {
+    transform: translate(-5px);
+}
+.judul-card-aktivitas {
+    font-weight: bold;
+    background-color: #667eea;
+    border-radius: 20px;
+    font-size: 40px;
+    margin-bottom: 20px;
+    color: #333;
+    text-align: center;
+    font-family: 'Courier New';
+}
+
+/* Log Aktivitas */
+.log-box {
+    background: #f8f9fa;
+    border-radius: 20px;
+    padding: 5px;
+    overflow-y: auto; 
+    height: 200px;
+    text-align: center;
+    color: grey;
+    font-size: large;
+
+}
+
+
+/* CARD MASING-MASING SENSOR */
+.card-sensor-jarak{
+    font-weight: bold;
+    font-size: 20px;
+    padding: 25px;
+    text-align: center;
+    font-family: 'Courier New';
+    background-color: white;
+    border-radius: 20px;
+}
+.card-sensor-jarak:hover {
+    transform: translate(-5px);
+}
+
+.card-sensor-dht{
+    padding: 25px;
+    font-weight: bold;
+    font-size: 20px;
+    background-color: white;
+    border-radius: 20px;
+    text-align: center;
+    font-family: 'Courier New';
+}
+
+.card-sensor-dht:hover {
+    transform: translate(-5px);
+}
+.card-sensor-api{
+    padding: 25px;
+    font-weight: bold;
+    font-size: 20px;
+    background-color: white;
+    border-radius: 20px;
+    text-align: center;
+    font-family: 'Courier New';
+}
+/* Logo Sensor */
+.logo-sensor-jarak {
+    max-width: 185px;
+    width: 100%;
+    height: auto;
+}
+
+
+.logo-sensor-dht {
+    max-width: 70px;
+    width: 100%;
+    height: auto;
+}
+
+.logo-sensor-api {
+    max-width: 95px;
+    width: 100%;
+    height: auto;
+}
+
+/* NAMA SENSOR */
+.sensor-jarak{
+    font-weight: bold;
+    font-size: 30px;
+    margin-bottom: 50px;
+    color: #333;
+}
+.sensor-dht{
+    font-weight: bold;
+    font-size: 30px;
+    margin-bottom: 15px;
+    color: #333;
+}
+.sensor-api{
+    font-weight: bold;
+    font-size: 30px;
+    margin-bottom: 50px;
+    color: #333;
+}
+
+/* NILAI-SENSOR */
+.nilai-sensor-jarak {
+    font-size: 25px;
+    font-style: oblique;
+    font-family:sans-serif;
+    color: black;
+    background-color: #667eea;
+    border-radius: 20px;
+}
+.nilai-sensor-dht {
+    font-size: 25px;
+    font-style: oblique;
+    font-family:sans-serif;
+    color: black;
+    margin-bottom: 10px;
+    background-color: #667eea;
+    border-radius: 20px;
+}
+
+.nilai-lembab-dht {
+    font-size: 25px;
+    font-style: oblique;
+    font-family:sans-serif;
+    color: black;
+    background-color: #667eea;
+    border-radius: 20px;
+}
+
+/* FIRESAFE */
+.fire-safe {
+    background: #d3f9d8;
+    border-radius: 8px;
+    color: black;
+    padding: 5px;
+    font-weight: bold;
+}
+
+/* Responsif Layar Kecil */
+@media(max-width : 768px) {
+    .header h1 {
+        font-size: 28px;
+    }
+
+    .dashboard-grid {
+        grid-template-columns: 1fr;
+    }
+
+
+}
+
+
+
+
