@@ -26,7 +26,7 @@ const int ledPins[3] = {D1, D2, D0};
 #define FLAME_PIN D5
 
 // ===== DHT =====
-#define DHTPIN D4
+#define DHTPIN D3
 #define DHTTYPE DHT11
 DHT dht(DHTPIN, DHTTYPE);
 
