@@ -3,7 +3,7 @@
 
 // ---------- WIFI ----------
 #define WIFI_SSID     "lann"
-#define WIFI_PASSWORD "Nayaaa"
+#define WIFI_PASSWORD "NayaaaSayang"
 
 // ---------- FIREBASE ----------
 #define API_KEY       "AIzaSyASYEAnSMK81XvAJ9rh5CtsPzd3RP0W8V8"
