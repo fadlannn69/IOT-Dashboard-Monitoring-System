@@ -37,14 +37,14 @@
 
 | Komponen     | Pin | GPIO   | Fungsi                 |
 | ------------ | --- | ------ | ---------------------- |
-| LED Merah    | D1  | GPIO5  | Output indikator       |
-| LED Hijau    | D2  | GPIO4  | Output indikator       |
-| LED Biru     | D0  | GPIO16 | Output indikator       |
-| Flame Sensor | D5  | GPIO14 | Input deteksi api      |
-| HC-SR04 TRIG | D7  | GPIO13 | Trigger ultrasonik     |
-| HC-SR04 ECHO | D6  | GPIO12 | Echo ultrasonik        |
-| DHT11        | D4  | GPIO2  | Data suhu & kelembaban |
-| Servo Motor  | D8  | GPIO15 | PWM kontrol servo      |
+| LED Merah    | D0  | GPIO5  | Output indikator       |
+| LED Hijau    | D3  | GPIO4  | Output indikator       |
+| LED Biru     | D4  | GPIO16 | Output indikator       |
+| Flame Sensor | D1  | GPIO14 | Input deteksi api      |
+| HC-SR04 TRIG | D6  | GPIO13 | Trigger ultrasonik     |
+| HC-SR04 ECHO | D7  | GPIO12 | Echo ultrasonik        |
+| DHT11        | D2  | GPIO2  | Data suhu & kelembaban |
+| Servo Motor  | D5  | GPIO15 | PWM kontrol servo      |
 
 **Catatan:**
 - Semua komponen menggunakan **GND dan VCC** (Kecuali LED)
