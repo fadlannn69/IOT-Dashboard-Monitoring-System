@@ -1,85 +1,80 @@
 #include <Arduino.h>
 #include <ESP8266WiFi.h>
 #include <Firebase_ESP_Client.h>
-#include <addons/TokenHelper.h>
-#include <addons/RTDBHelper.h>
-#include "secrets.h"
 #include <Servo.h>
 #include <DHT.h>
+#include "secrets.h"
 
-// ===== FIREBASE =====
+// ===== CONFIG =====
+#define SERVO_PIN D5
+#define TRIG_PIN  D6
+#define ECHO_PIN  D7
+#define FLAME_PIN D1
+#define DHTPIN    D2
+#define DHTTYPE   DHT11
+
+const int ledPins[3] = {D0, D3, D4};
+
+// ===== OBJECT =====
+Servo myservo;
+DHT dht(DHTPIN, DHTTYPE);
 FirebaseData fbdo;
 FirebaseAuth auth;
 FirebaseConfig config;
 
-// ===== SERVO =====
-Servo myservo;
+// ===== STATE =====
+struct SensorData {
+  float distance;
+  bool fire;
+  float temp;
+  float hum;
+};
 
-// ===== LED =====
-const int ledPins[3] = {D1, D2, D0}; 
+struct ControlData {
+  int servo;
+  bool led[3];
+};
 
-// ===== ULTRASONIC =====
-#define TRIG_PIN D7
-#define ECHO_PIN D6
-
-// ===== FLAME =====
-#define FLAME_PIN D5
-
-// ===== DHT =====
-#define DHTPIN D3
-#define DHTTYPE DHT11
-DHT dht(DHTPIN, DHTTYPE);
+SensorData sensor;
+ControlData control;
 
 // ===== TIMER =====
-unsigned long lastFirebase = 0;
-unsigned long lastSensor = 0;
+unsigned long tFirebase = 0;
+unsigned long tSensor   = 0;
 
-const int firebaseInterval = 5000; // 5 detik
-const int sensorInterval   = 4000; // 4 detik
+const int intervalFirebase = 5000;
+const int intervalSensor   = 4000;
 
 bool firebaseReady = false;
 
+// ================= SETUP =================
 void setup() {
   Serial.begin(115200);
-  delay(2000); // stabilisasi power
 
-  // ===== LED =====
+  // LED
   for (int i = 0; i < 3; i++) {
     pinMode(ledPins[i], OUTPUT);
     digitalWrite(ledPins[i], LOW);
   }
 
-  // ===== SERVO =====
-  myservo.attach(D8); 
-  myservo.write(0);
-
-  // ===== ULTRASONIC =====
+  // Hardware
   pinMode(TRIG_PIN, OUTPUT);
   pinMode(ECHO_PIN, INPUT);
-
-  // ===== FLAME =====
   pinMode(FLAME_PIN, INPUT);
 
-  // ===== DHT =====
+  myservo.attach(SERVO_PIN);
+  myservo.write(0);
+
   dht.begin();
 
-  // ===== WIFI =====
+  // WiFi
   WiFi.begin(WIFI_SSID, WIFI_PASSWORD);
-  Serial.print("Connecting WiFi");
-
   unsigned long start = millis();
   while (WiFi.status() != WL_CONNECTED && millis() - start < 10000) {
-    Serial.print(".");
     delay(300);
   }
 
-  if (WiFi.status() == WL_CONNECTED) {
-    Serial.println("\nWiFi Connected");
-  } else {
-    Serial.println("\nWiFi FAIL (lanjut offline)");
-  }
-
-  // ===== FIREBASE CONFIG =====
+  // Firebase
   config.api_key = API_KEY;
   config.database_url = DATABASE_URL;
   auth.user.email = USER_EMAIL;
@@ -88,90 +83,78 @@ void setup() {
   Firebase.begin(&config, &auth);
   Firebase.reconnectNetwork(true);
 
-  // tunggu max 5 detik
-  start = millis();
-  while (!Firebase.ready() && millis() - start < 5000) {
-    delay(300);
-  }
-
   firebaseReady = Firebase.ready();
-  Serial.println(firebaseReady ? "Firebase Ready" : "Firebase FAIL");
+}
+
+// ================= SENSOR =================
+void readSensors() {
+  // Ultrasonic
+  digitalWrite(TRIG_PIN, LOW); delayMicroseconds(2);
+  digitalWrite(TRIG_PIN, HIGH); delayMicroseconds(10);
+  digitalWrite(TRIG_PIN, LOW);
+
+  long duration = pulseIn(ECHO_PIN, HIGH, 30000);
+  sensor.distance = duration > 0 ? duration * 0.034 / 2 : -1;
+
+  // Flame
+  sensor.fire = digitalRead(FLAME_PIN) == LOW;
+
+  // DHT
+  sensor.hum = dht.readHumidity();
+  sensor.temp = dht.readTemperature();
+}
+
+// ================= APPLY CONTROL =================
+void applyControl() {
+  myservo.write(constrain(control.servo, 0, 180));
+
+  for (int i = 0; i < 3; i++) {
+    digitalWrite(ledPins[i], control.led[i]);
+  }
+}
+
+// ================= FIREBASE READ =================
+void readFirebase() {
+  if (!firebaseReady) return;
+
+  if (Firebase.RTDB.getJSON(&fbdo, "/control")) {
+    FirebaseJson &json = fbdo.jsonObject();
+
+    json.get(control.servo, "servo");
+
+    for (int i = 0; i < 3; i++) {
+      String key = "led" + String(i);
+      json.get(control.led[i], key);
+    }
+  }
+}
+
+// ================= FIREBASE WRITE =================
+void sendFirebase() {
+  if (!firebaseReady) return;
+
+  FirebaseJson json;
+  json.set("jarak", sensor.distance);
+  json.set("api", sensor.fire);
+  json.set("suhu", sensor.temp);
+  json.set("kelembaban", sensor.hum);
+
+  Firebase.RTDB.setJSON(&fbdo, "/sensor", &json);
 }
 
 // ================= LOOP =================
 void loop() {
   unsigned long now = millis();
 
-  // ===== FIREBASE CONTROL =====
-  if (firebaseReady && now - lastFirebase > firebaseInterval) {
-    lastFirebase = now;
-
-    // ===== SERVO =====
-    if (Firebase.RTDB.getInt(&fbdo, "/servo/angle")) {
-      int angle = constrain(fbdo.intData(), 0, 180);
-      myservo.write(angle);
-      Serial.print("Servo angle: ");
-      Serial.println(angle);
-    }
-
-    // ===== LED =====
-    for (int i = 1; i <= 3; i++) {
-      char path[20];
-      sprintf(path, "/lampu/led%d", i);
-
-      if (Firebase.RTDB.getBool(&fbdo, path)) {
-        digitalWrite(ledPins[i - 1], fbdo.boolData());
-        Serial.print("LED");
-        Serial.print(i);
-        Serial.print(": ");
-        Serial.println(fbdo.boolData() ? "ON" : "OFF");
-      }
-    }
+  if (now - tSensor > intervalSensor) {
+    tSensor = now;
+    readSensors();
   }
 
-  // ===== SENSOR =====
-  if (now - lastSensor > sensorInterval) {
-    lastSensor = now;
-
-    // ===== ULTRASONIC =====
-    digitalWrite(TRIG_PIN, LOW);
-    delayMicroseconds(2);
-    digitalWrite(TRIG_PIN, HIGH);
-    delayMicroseconds(10);
-    digitalWrite(TRIG_PIN, LOW);
-
-    long duration = pulseIn(ECHO_PIN, HIGH, 30000);
-    float distance = duration > 0 ? duration * 0.034 / 2 : -1;
-    Serial.print("Jarak: ");
-    Serial.println(distance);
-
-    if (firebaseReady)
-      Firebase.RTDB.setFloat(&fbdo, "/sensor/jarak", distance);
-
-    // ===== FLAME =====
-    bool fire = digitalRead(FLAME_PIN) == LOW;
-    Serial.print("Flame: ");
-    Serial.println(fire ? "DETECTED" : "SAFE");
-
-    if (firebaseReady)
-      Firebase.RTDB.setBool(&fbdo, "/sensor/api", fire);
-
-    // ===== DHT =====
-    float h = dht.readHumidity();
-    float t = dht.readTemperature();
-
-    if (!isnan(h) && !isnan(t)) {
-      Serial.print("Temp: ");
-      Serial.print(t);
-      Serial.print(" | Hum: ");
-      Serial.println(h);
-
-      if (firebaseReady) {
-        Firebase.RTDB.setFloat(&fbdo, "/sensor/suhu", t);
-        Firebase.RTDB.setFloat(&fbdo, "/sensor/kelembaban", h);
-      }
-    } else {
-      Serial.println("DHT Error");
-    }
+  if (now - tFirebase > intervalFirebase) {
+    tFirebase = now;
+    readFirebase();
+    applyControl();
+    sendFirebase();
   }
 }
