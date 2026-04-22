@@ -60,7 +60,7 @@
     <li>Persiapkan Hardware Yang Di Butuhkan</li>
     <li>Rakit IOT Hardware Sesuai Dengan Pin Mapping</li>
     <li>Hubungkan ESP8266 Dengan Komputer/Laptop</li>
-    <li>Clone Git Repository (git clone https://github.com/fadlannn69/UJIKOM-FADLANN.git)</li>
+    <li>Clone Git Repository (git clone https://github.com/fadlannn69/IOT-Dashboard-Monitoring-System.git)</li>
     <li>Install Arduino-IDE</li>
     <li>Tambahkan Source Json ESP8266 (http://arduino.esp8266.com/stable/package_esp8266com_index.json) di preferences</li>
     <li>Install Board ESP8266 Dari Boards Manager</li>
@@ -72,7 +72,7 @@
 <h2 align="center"><Strong> How To Access Dashboard :</Strong></h2>
 <ol>
     <li>Akses Browser e.g. librewolf , brave , atau firefox</li>
-    <li>Akses Link (https://fadlannn69.github.io/UJIKOM-FADLANN/index.html)</li>
+    <li>Akses Link (https://fadlannn69.github.io/IOT-Dashboard-Monitoring-System/index.html)</li>
     <li>Masukkan Kredensial Username & Password Di Login Page</li>
     <li>Masuk Ke Dashboard Page</li>
 </ol>
